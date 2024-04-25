@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>News Classification App</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                /*background-image: url('./bg.png');*/
+            }
+
+            p {
+                text-align: center;
+                color: red;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .card {
+                background-color: rgba(255, 255, 255, 0.8);
+                /* Transparent background color */
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                /* Box shadow for card */
+            }
+
+            form {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            input {
+                margin-bottom: 10px;
+                padding: 5px;
+            }
+
+            button {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+            a {
+                display: block;
+                text-align: center;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="card">
+                {% if error %}
+                <p style="color: red;">{{ error }}</p>
+                {% endif %}
+
+                <h1>Register</h1>
+                <form action="/register" method="POST">
+                    Username: <input type="text" name="username" required><br>
+                    Password: <input type="password" name="password" required><br>
+                    <button type="submit">Register</button>
+                </form>
+                <br>
+                <a href="/">Already have an account? Login here</a>
+            </div>
+        </div>
+    </body>
+
+</html>

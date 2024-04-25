@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>News Classification App</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f9f9f9;
+            }
+
+            .container {
+                width: 80%;
+                margin: 0 auto;
+                padding-top: 50px;
+                position: relative;
+                /* Added for positioning the logout button */
+            }
+
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+
+            h2 {
+                text-align: center;
+                color: #666;
+            }
+
+            form {
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            textarea {
+                width: 100%;
+                height: 150px;
+                margin-bottom: 20px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                resize: none;
+            }
+
+            button {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                margin-right: 10px;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+            .result {
+                text-align: center;
+                margin-top: 20px;
+                font-weight: bold;
+            }
+
+            .reliable {
+                color: green;
+            }
+
+            .unreliable {
+                color: red;
+            }
+
+            .clear-btn {
+                display: inline-block;
+                background-color: #dc3545;
+                color: white;
+                padding: 8px 16px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .clear-btn:hover {
+                background-color: #c82333;
+            }
+
+            .logout-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: #6c757d;
+                color: white;
+                padding: 8px 16px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .logout-btn:hover {
+                background-color: #5a6268;
+            }
+
+            .see-all-btn {
+                display: block;
+                text-align: center;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>News Authenticator</h1>
+            <h2>Welcome, {{ username }}!</h2>
+
+            <form action="/main" method="POST">
+                Enter news content here: <br>
+                <textarea name="news_content" placeholder="Type your news content here..."
+                    required>{{ news_content }}</textarea><br>
+                <button type="submit">Predict</button>
+                <button type="button" class="clear-btn" onclick="clearText()">Clear</button>
+                <a href="/gui" class="see-all-btn">See All</a>
+                <a href="/logout" class="logout-btn">Logout</a>
+            </form>
+
+            {% if result %}
+            <p class="result">The news is classified as: <span
+                    class="{% if result == 'Reliable' %}reliable{% else %}unreliable{% endif %}">{{ result }}</span></p>
+            {% endif %}
+        </div>
+
+        <script>
+            function clearText() {
+                document.querySelector('textarea').value = '';
+            }
+        </script>
+    </body>
+
+</html>
